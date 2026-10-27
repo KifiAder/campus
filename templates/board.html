@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Все проекты — Биржа проектов</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/board.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <span class="brand__sub">колледж · студенческие инициативы</span>
+      <nav class="nav" data-nav>
+        <a href="/board" class="is-active">Все проекты</a>
+        <a href="/cabinet">Кабинет</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <div class="page__head">
+        <h1>Проекты на бирже</h1>
+        <p>Найдите команду или присоединитесь к чужой идее.</p>
+      </div>
+
+      <!-- Фильтры и поиск: данные берутся из /api/projects -->
+      <div class="toolbar">
+        <div class="search">
+          <input class="input" id="search" type="search"
+                 placeholder="Поиск по названию, описанию, тегам" maxlength="60">
+        </div>
+        <div class="chips" id="status-chips">
+          <button class="chip is-active" type="button" data-status="">Все</button>
+          <button class="chip" type="button" data-status="open">Ищу команду</button>
+          <button class="chip" type="button" data-status="in_work">В работе</button>
+          <button class="chip" type="button" data-status="closed">Архив</button>
+        </div>
+      </div>
+
+      <div class="notice" id="notice" role="alert"></div>
+      <div class="grid" id="projects">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span>Биржа проектов · учебный проект, <span data-year></span></span>
+      <span class="mono">HTML · CSS · JS · Python · MySQL</span>
+    </div>
+  </footer>
+</body>
+</html>

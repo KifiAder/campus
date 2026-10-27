@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Биржа проектов — Колледж</title>
+  <meta name="description" content="Студенческая биржа проектов: публикуй идеи и собирай команду.">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/home.js" defer></script>
+</head>
+<body>
+  <!-- Шапка: общая для всех страниц, данные пользователя подставляет app.js -->
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <span class="brand__sub">колледж · студенческие инициативы</span>
+
+      <nav class="nav" data-nav>
+        <a href="/board">Все проекты</a>
+        <a href="/cabinet">Кабинет</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="hero__kicker">Биржа проектов</p>
+        <h1 class="hero__title">Идея есть — не хватает команды</h1>
+        <p class="hero__text">
+          Публикуй проект, указывай, кого ищешь, и получай отклики от студентов.
+          Куратор видит все заявки и помогает собрать команду.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--block" style="width:auto" href="/register">Создать аккаунт</a>
+          <a class="btn btn--block" style="width:auto" href="/board">Смотреть биржу</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Свежие проекты</h2>
+          <a class="small" href="/board">Все проекты →</a>
+        </div>
+        <div class="grid" id="home-projects">
+          <!-- Скелетоны на время загрузки -->
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom:56px">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Как это работает</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">01</div>
+            <h3>Регистрация</h3>
+            <p>Логин, имя и почта. Пароль хранится в виде хеша, а не открытым текстом.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">02</div>
+            <h3>Публикация</h3>
+            <p>Заголовок, короткое описание и что именно нужно от команды.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">03</div>
+            <h3>Отклики</h3>
+            <p>Другие студенты откликаются, автор видит их в кабинете.</p>
+          </div>
+          <div class="step">
+            <div class="step__num">04</div>
+            <h3>Статус</h3>
+            <p>Проект переходит в «В работе» или «Архив», история изменений сохраняется.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span>Биржа проектов · учебный проект, <span data-year></span></span>
+      <span class="mono">HTML · CSS · JS · Python · MySQL</span>
+    </div>
+  </footer>
+</body>
+</html>

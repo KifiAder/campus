@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кабинет — Биржа проектов</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/cabinet.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <span class="brand__sub">колледж · студенческие инициативы</span>
+      <nav class="nav" data-nav>
+        <a href="/board">Все проекты</a>
+        <a href="/cabinet" class="is-active">Кабинет</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <div class="page__head">
+        <h1 id="cabinet-title">Кабинет</h1>
+        <p id="cabinet-subtitle">Управляйте своими проектами и заявками.</p>
+      </div>
+
+      <div class="notice" id="notice" role="alert" aria-live="polite"></div>
+
+      <!-- Счётчики -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__value" id="stat-projects">–</div>
+          <div class="stat__label">проектов</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="stat-open">–</div>
+          <div class="stat__label">ищут команду</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="stat-apps">–</div>
+          <div class="stat__label">откликов</div>
+        </div>
+      </div>
+
+      <!-- Вкладки -->
+      <div class="chips" id="tabs" style="margin-bottom:18px">
+        <button class="chip is-active" type="button" data-tab="new">Новый проект</button>
+        <button class="chip" type="button" data-tab="mine">Мои проекты</button>
+        <button class="chip" type="button" data-tab="inbox">Входящие заявки</button>
+        <button class="chip" type="button" data-tab="sent">Мои отклики</button>
+      </div>
+
+      <!-- Вкладка 1: создание проекта -->
+      <section class="split" data-panel="new">
+        <div class="card">
+          <h2>Опубликовать проект</h2>
+          <p class="small muted" style="margin-bottom:16px">
+            Коротко: что за идея и кого вы ищете в команду.
+          </p>
+
+          <form id="project-form" novalidate>
+            <div class="field">
+              <label for="title">Заголовок</label>
+              <input class="input" id="title" name="title" type="text" maxlength="120"
+                     placeholder="Телеграм-бот с расписанием кабинетов">
+              <div class="field__hint" data-default="От 6 до 120 символов">0 / 120</div>
+            </div>
+
+            <div class="field">
+              <label for="short_desc">Короткое описание</label>
+              <input class="input" id="short_desc" name="short_desc" type="text" maxlength="180"
+                     placeholder="Одна фраза: что делает проект и зачем он нужен">
+              <div class="field__hint" data-default="От 10 до 180 символов">0 / 180</div>
+            </div>
+
+            <div class="field">
+              <label for="body">Подробно: задача и кто нужен</label>
+              <textarea class="textarea" id="body" name="body" maxlength="3000"
+                        placeholder="Что уже сделано, какой стек, кого ищем (дизайнер, бэкенд, тестировщик)."></textarea>
+              <div class="field__hint" data-default="Минимум 30 символов">0 / 3000</div>
+            </div>
+
+            <div class="field">
+              <label for="tags">Теги через запятую</label>
+              <input class="input" id="tags" name="tags" type="text" maxlength="190"
+                     placeholder="python, telegram, дизайн">
+              <div class="field__hint" data-default="Помогают найти проект через поиск"></div>
+            </div>
+
+            <button class="btn btn--primary" type="submit" id="project-submit">Опубликовать</button>
+          </form>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3>Подсказка</h3>
+            <p class="small muted" style="margin:0">
+              Хорошее объявление отвечает на три вопроса: что делаем, на каком этапе, кого не хватает.
+              Так откликаются чаще.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Вкладка 2: мои проекты -->
+      <section data-panel="mine" hidden>
+        <div class="toolbar">
+          <div class="search">
+            <input class="input" id="mine-search" type="search" placeholder="Поиск по моим проектам" maxlength="60">
+          </div>
+        </div>
+        <div class="grid" id="mine-grid"></div>
+      </section>
+
+      <!-- Вкладка 3: входящие заявки на мои проекты -->
+      <section data-panel="inbox" hidden>
+        <div class="card" style="padding:0">
+          <table class="table table--responsive" id="inbox-table">
+            <thead>
+              <tr><th>Студент</th><th>Проект</th><th>Сообщение</th><th>Когда</th></tr>
+            </thead>
+            <tbody><tr><td class="muted small">Загрузка…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Вкладка 4: отклики, которые я оставил на чужие проекты -->
+      <section data-panel="sent" hidden>
+        <div class="card" style="padding:0">
+          <table class="table table--responsive" id="sent-table">
+            <thead>
+              <tr><th>Проект</th><th>Автор</th><th>Статус</th><th>Мой отклик</th></tr>
+            </thead>
+            <tbody><tr><td class="muted small">Загрузка…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

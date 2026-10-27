@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Куратор — Биржа проектов</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <span class="brand__sub">режим куратора</span>
+      <nav class="nav" data-nav>
+        <a href="/board">Все проекты</a>
+        <a href="/cabinet">Кабинет</a>
+        <a href="/admin" class="is-active">Куратор</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <div class="page__head">
+        <h1>Панель куратора</h1>
+        <p>Все проекты биржи. Можно менять статус любого проекта.</p>
+      </div>
+
+      <div class="notice" id="notice" role="alert"></div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__value" id="a-projects">–</div>
+          <div class="stat__label">всего проектов</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="a-open">–</div>
+          <div class="stat__label">ищут команду</div>
+        </div>
+        <div class="stat">
+          <div class="stat__value" id="a-apps">–</div>
+          <div class="stat__label">откликов</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <input class="input" id="admin-search" type="search" placeholder="Поиск по всем проектам" maxlength="60">
+        </div>
+        <select class="select" id="admin-status" style="width:auto">
+          <option value="">Все статусы</option>
+          <option value="open">Ищу команду</option>
+          <option value="in_work">В работе</option>
+          <option value="closed">Архив</option>
+        </select>
+      </div>
+
+      <div class="card" style="padding:0;overflow:auto">
+        <table class="table table--responsive" id="admin-table">
+          <thead>
+            <tr>
+              <th>Проект</th>
+              <th>Автор</th>
+              <th>Отклики</th>
+              <th>Дата</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody><tr><td class="muted small">Загрузка…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

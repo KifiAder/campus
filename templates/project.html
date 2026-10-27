@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проект — Биржа проектов</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/project.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <span class="brand__sub">колледж · студенческие инициативы</span>
+      <nav class="nav" data-nav>
+        <a href="/board">Все проекты</a>
+        <a href="/cabinet">Кабинет</a>
+      </nav>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <p class="small"><a href="/board">← Все проекты</a></p>
+
+      <div class="notice" id="notice" role="alert"></div>
+
+      <div class="split" id="project-view">
+        <!-- Основная колонка: описание и форма отклика -->
+        <div>
+          <article class="card" id="project-body">
+            <p class="mono muted">загрузка…</p>
+          </article>
+
+          <section class="card" id="apply-card" style="margin-top:20px;display:none">
+            <h2>Откликнуться на проект</h2>
+            <p class="small muted">Расскажите, что умеете и чем можете помочь. Автор увидит отклик в кабинете.</p>
+
+            <form id="apply-form" novalidate>
+              <div class="field">
+                <label for="message">Сообщение автору</label>
+                <textarea class="textarea" id="message" name="message" maxlength="500"
+                          placeholder="Например: умею верстать и немного знаю Python, готов делать фронт"></textarea>
+                <div class="field__hint" data-default="От 15 символов">0 / 500</div>
+              </div>
+              <button class="btn btn--primary" type="submit" id="apply-submit">Отправить отклик</button>
+            </form>
+          </section>
+        </div>
+
+        <!-- Правая колонка: автор, статус, история -->
+        <aside class="sticky">
+          <div class="card">
+            <h3>Автор</h3>
+            <div class="project-card__author" style="margin-top:8px">
+              <span class="avatar" id="author-avatar"></span>
+              <span id="author-name"></span>
+            </div>
+            <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+
+            <h3>Статус</h3>
+            <div id="project-status" style="margin:6px 0 12px"></div>
+
+            <!-- Смена статуса видна только автору и куратору -->
+            <form id="status-form" style="display:none">
+              <div class="field" style="margin-bottom:8px">
+                <select class="select" id="status-select" name="status">
+                  <option value="open">Ищу команду</option>
+                  <option value="in_work">В работе</option>
+                  <option value="closed">Архив</option>
+                </select>
+              </div>
+              <button class="btn btn--sm" type="submit" id="status-submit">Сменить статус</button>
+            </form>
+          </div>
+
+          <div class="card" style="margin-top:14px">
+            <h3>История статусов</h3>
+            <table class="table table--responsive" id="history-table">
+              <tbody><tr><td class="muted small">Пока без изменений</td></tr></tbody>
+            </table>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Регистрация — Биржа проектов</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/app.js" defer></script>
+  <script src="/static/js/register.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark" aria-hidden="true"></span>
+        Биржа проектов
+      </a>
+      <div class="topbar__actions">
+        <button class="icon-btn" type="button" data-theme-toggle>☾</button>
+        <div class="topbar__actions" data-header-user></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth">
+    <div class="auth__box auth__box--wide">
+      <p class="auth__kicker">Шаг 1 из 1</p>
+      <h1 class="auth__title">Регистрация студента</h1>
+
+      <!-- Общий блок сообщений: успех/ошибка сервера -->
+      <div class="notice" id="notice" role="alert" aria-live="polite"></div>
+
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="login">Логин</label>
+          <input class="input" id="login" name="login" type="text"
+                 autocomplete="username" placeholder="ivan_petrov" maxlength="20">
+          <div class="field__hint" data-default="3–20 символов: латиница, цифры, _ и ."></div>
+        </div>
+
+        <div class="field">
+          <label for="name">Имя и фамилия</label>
+          <input class="input" id="name" name="name" type="text"
+                 autocomplete="name" placeholder="Иван Петров" maxlength="64">
+          <div class="field__hint" data-default="Так вас увидят на бирже"></div>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input class="input" id="email" name="email" type="email"
+                 autocomplete="email" placeholder="ivan@campus.code" maxlength="128">
+          <div class="field__hint" data-default="Для связи по проектам"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">Пароль</label>
+          <div class="input-wrap">
+            <input class="input" id="password" name="password" type="password"
+                   autocomplete="new-password" placeholder="Минимум 6 символов" maxlength="72">
+            <button class="reveal" type="button" data-reveal="password">показать</button>
+          </div>
+          <!-- индикатор длины пароля -->
+          <div class="field__hint" data-default="Не короче 6 символов">0 / 6</div>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Повторите пароль</label>
+          <input class="input" id="confirm" name="confirm" type="password"
+                 autocomplete="new-password" placeholder="Ещё раз" maxlength="72">
+          <div class="field__hint" data-default=""></div>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" id="submit">Создать аккаунт</button>
+      </form>
+
+      <p class="auth__foot">
+        Уже есть аккаунт? <a href="/login">Войти</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>
